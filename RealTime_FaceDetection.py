@@ -40,7 +40,10 @@ servoPos = [90, 90] # initial servo position
 
 while True:
     success, img = cap.read()
+    start_time = time.time()
+    # Face detection
     img, bboxs = detector.findFaces(img, draw=False)
+    detection_time = time.time()
 
     if bboxs:
         #get the coordinate
@@ -93,6 +96,12 @@ while True:
     msg = f"{180-servoPos[0]}:{servoPos[1]}"
     print(msg)
     send_command(msg)
+    command_time = time.time()
+
+    print(f"Face Detection Time: {detection_time - start_time} seconds")
+    print(f"Servo Communication Time: {command_time - detection_time} seconds")
+    print(f"Total Loop Time: {command_time - start_time} seconds")
+    
     time.sleep(0.1)  # Add a delay of 50 milliseconds (0.05 seconds)
 
     cv2.imshow("Image", img)
