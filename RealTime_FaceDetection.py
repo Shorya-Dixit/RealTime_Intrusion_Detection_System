@@ -102,7 +102,7 @@ while True:
     print(f"Servo Communication Time: {command_time - detection_time} seconds")
     print(f"Total Loop Time: {command_time - start_time} seconds")
     
-    time.sleep(0.1)  # Add a delay of 50 milliseconds (0.05 seconds)
+    time.sleep(0.1)  # Add a delay of 100 milliseconds 
 
     cv2.imshow("Image", img)
     cv2.waitKey(1)
